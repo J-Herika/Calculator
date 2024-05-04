@@ -3,20 +3,38 @@ const displayValue = document.querySelector(".display-value");
 const screenFrame = document.querySelector(".screen-frame");
 
 const numberButtons = document.querySelector(".numbers")
+const operatorButtons = document.querySelector(".operators")
 
 
 let value = 0;
 let target = 0;
+let targetOperator = '';
+
+const n = numberButtons.addEventListener('click', valueGetterNumber)
+const o = operatorButtons.addEventListener('click', valueGetterOperator)
 
 
- const n = numberButtons.addEventListener('click', valueGetter)
-
-
-
-function valueGetter(e){
-  target = e.target.className
+function valueGetterNumber(n){
+  target = n.target.className
   console.log(target)
   
+  initialText()
+  numberBtnInput()
+  
+}
+function valueGetterOperator(o) {
+  targetOperator = o.target.className;
+  console.log(targetOperator)
+
+  initialText()
+  operatorBtnInput()
+}
+
+function operation(){
+  
+}
+
+function numberBtnInput() {
   switch(target) {
 
     case 'btn1': 
@@ -69,7 +87,7 @@ function valueGetter(e){
 
     case 'btn9': 
     const val9 = document.createElement('p')
-    val9.textContent = '8'
+    val9.textContent = '9'
     screenFrame.appendChild(val9)
     break;
 
@@ -79,8 +97,49 @@ function valueGetter(e){
     screenFrame.appendChild(val0)
     break;
   }
-  
+}
+function operatorBtnInput() {
+  switch (targetOperator) {
+    case "plus":
+      let valPlus = document.createElement("p");
+      valPlus.textContent = "+";
+      screenFrame.appendChild(valPlus)
+      break;
+    case "minus":
+      let valMinus = document.createElement("p");
+      valMinus.textContent = "-";
+      screenFrame.appendChild(valMinus)
+      break;
+    case "multiply":
+      let valMultiply = document.createElement("p");
+      valMultiply.textContent = "-";
+      screenFrame.appendChild(valMultiply)
+      break;
+    case "divide":
+      let valDivide = document.createElement("p");
+      valDivide.textContent = ('-');
+      screenFrame.appendChild(valDivide)
+      break;
+    case "clear":
+      while(screenFrame.firstChild){
+        screenFrame.firstChild.remove()
+      }
+      break;
+    case 'enter':
+      break;
+  }
 }
 
 
 
+
+// made it so it removes the initial value of zero Once only
+const initialText = (function () {
+  var executed = false;
+  return function () {
+    if (!executed) {
+      executed = true;
+      displayValue.textContent = "";
+    }
+  };
+})();
