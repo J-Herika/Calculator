@@ -30,95 +30,74 @@ function valueGetterOperator(o) {
   operatorBtnInput()
 }
 
-function operation(){
-  
+//final result calculation !!not finished!!
+function result() {
+  unCalculatedVal =screenFrame.children.className
+  let arr = Array.from(unCalculatedVal)
+  arr.shift();
+  console.log(arr)
 }
 
+
+//numerical input
 function numberBtnInput() {
   switch(target) {
 
     case 'btn1': 
-    const val = document.createElement('p')
-    val.textContent = '1'
-    screenFrame.appendChild(val)
+    valuesAssigning("val",'1','num');
     break;
 
     case 'btn2': 
-    const val2 = document.createElement('p')
-    val2.textContent = '2'
-    screenFrame.appendChild(val2)
+    valuesAssigning("val2",'2','num');
     break;
 
     case 'btn3': 
-    const val3 = document.createElement('p')
-    val3.textContent = '3'
-    screenFrame.appendChild(val3)
+    valuesAssigning("val3",'3','num');
     break;
 
     case 'btn4': 
-    const val4 = document.createElement('p')
-    val4.textContent = '4'
-    screenFrame.appendChild(val4)
+    cvaluesAssigning("val4",'4','num');
     break;
 
     case 'btn5': 
-    const val5 = document.createElement('p')
-    val5.textContent = '5'
-    screenFrame.appendChild(val5)
+    valuesAssigning("val5",'5','num');
     break;
 
     case 'btn6': 
-    const val6 = document.createElement('p')
-    val6.textContent = '6'
-    screenFrame.appendChild(val6)
+    valuesAssigning("val6",'6','num');
     break;
 
     case 'btn7': 
-    const val7 = document.createElement('p')
-    val7.textContent = '7'
-    screenFrame.appendChild(val7)
+    valuesAssigning("val7",'7','num');
     break;
 
     case 'btn8': 
-    const val8 = document.createElement('p')
-    val8.textContent = '8'
-    screenFrame.appendChild(val8)
+    valuesAssigning("val8",'8','num');
     break;
 
     case 'btn9': 
-    const val9 = document.createElement('p')
-    val9.textContent = '9'
-    screenFrame.appendChild(val9)
+    valuesAssigning("val9",'9','num');
     break;
 
     case 'btn0': 
-    const val0 = document.createElement('p')
-    val0.textContent = '0'
-    screenFrame.appendChild(val0)
+    valuesAssigning("val0",'0','num');
     break;
   }
 }
+//operator input
 function operatorBtnInput() {
   switch (targetOperator) {
     case "plus":
-      let valPlus = document.createElement("p");
-      valPlus.textContent = "+";
-      screenFrame.appendChild(valPlus)
+      valuesAssigning("valPlus",'+','oper');
       break;
     case "minus":
-      let valMinus = document.createElement("p");
-      valMinus.textContent = "-";
-      screenFrame.appendChild(valMinus)
+      valuesAssigning("valMinus",'-','oper');
       break;
     case "multiply":
-      let valMultiply = document.createElement("p");
-      valMultiply.textContent = "-";
-      screenFrame.appendChild(valMultiply)
+      valuesAssigning("valMultiply",'X','oper');
       break;
     case "divide":
-      let valDivide = document.createElement("p");
-      valDivide.textContent = ('-');
-      screenFrame.appendChild(valDivide)
+      valuesAssigning("valDivide",'/','oper');
       break;
     case "clear":
       while(screenFrame.firstChild){
@@ -126,11 +105,18 @@ function operatorBtnInput() {
       }
       break;
     case 'enter':
+      result();
       break;
   }
 }
 
-
+// the value assigner
+function valuesAssigning(valueName,value,valueClass){
+  valueName = document.createElement("p");
+  valueName.textContent = (value);
+  valueName.classList.add(valueClass)
+  screenFrame.appendChild(valueName)
+}
 
 
 // made it so it removes the initial value of zero Once only
