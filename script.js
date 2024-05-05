@@ -35,20 +35,19 @@ function result() {
   for (value in equation) {
     finalAnswer += equation[value].innerText;
   }
-  if (finalAnswer != []) finalAnswer = eval(finalAnswer);;
+  if (finalAnswer != []) finalAnswer = eval(finalAnswer);
   displayResult();
 }
 
-function displayResult(){
+function displayResult() {
   while (screenFrame.firstChild) {
     screenFrame.firstChild.remove();
   }
-  const displayedResult = document.createElement('p');
+  const displayedResult = document.createElement("p");
   displayedResult.textContent = finalAnswer;
-  
+
   screenFrame.appendChild(displayedResult);
 }
-
 
 //numerical input
 function numberBtnInput() {
@@ -92,6 +91,13 @@ function numberBtnInput() {
     case "btn0":
       valuesAssigning("val0", "0", "num0");
       break;
+    case "clear":
+      clearDisplay();
+      resetValue();
+      break;
+    case "enter":
+      result();
+      break;
   }
 }
 //operator input
@@ -109,13 +115,6 @@ function operatorBtnInput() {
     case "divide":
       valuesAssigning("valDivide", "/", "oper-divide");
       break;
-    case "clear":
-      clearDisplay();
-      resetValue();
-      break;
-    case "enter":
-      result();
-      break;
   }
 }
 
@@ -127,13 +126,13 @@ function valuesAssigning(valueName, value, valueClass) {
   screenFrame.appendChild(valueName);
 }
 
-//display Cleaner 
-function clearDisplay(){
+//display Cleaner
+function clearDisplay() {
   while (screenFrame.firstChild) {
     screenFrame.firstChild.remove();
   }
 }
-resetValue = () => finalAnswer = Array.from(finalAnswer)
+resetValue = () => (finalAnswer = Array.from(finalAnswer));
 
 // made it so it removes the initial value of zero Once only
 const initialText = (function () {
