@@ -36,6 +36,7 @@ function result() {
     finalAnswer += equation[value].innerText;
   }
   if (finalAnswer != []) finalAnswer = eval(finalAnswer);
+  finalAnswer = Math.round(finalAnswer * 100) / 100;
   displayResult();
 }
 
@@ -97,6 +98,7 @@ function numberBtnInput() {
       break;
     case "enter":
       result();
+      resetValue();
       break;
   }
 }
@@ -105,15 +107,21 @@ function operatorBtnInput() {
   switch (targetOperator) {
     case "plus":
       valuesAssigning("valPlus", "+", "oper-plus");
+
       break;
     case "minus":
       valuesAssigning("valMinus", "-", "oper-minus");
+
       break;
     case "multiply":
       valuesAssigning("valMultiply", "*", "oper-multiply");
+
       break;
     case "divide":
       valuesAssigning("valDivide", "/", "oper-divide");
+      break;
+    case 'dot':
+      valuesAssigning("valDot",".",'oper-dot');
       break;
   }
 }
