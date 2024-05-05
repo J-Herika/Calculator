@@ -29,7 +29,7 @@ function valueGetterOperator(o) {
   operatorBtnInput();
 }
 
-//final result calculation !!not finished!!
+//final result calculation 
 function result() {
   equation = Array.from(screenFrame.children);
   for (value in equation) {
