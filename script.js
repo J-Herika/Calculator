@@ -7,7 +7,8 @@ const operatorButtons = document.querySelector(".operators");
 
 let value = 0;
 let target = 0;
-let equation = []
+let equation;
+let finalAnswer = [];
 let targetOperator = "";
 
 const n = numberButtons.addEventListener("click", valueGetterNumber);
@@ -30,15 +31,24 @@ function valueGetterOperator(o) {
 
 //final result calculation !!not finished!!
 function result() {
-  unCalculatedVal = screenFrame.children;
-  let arr = Array.from(unCalculatedVal);
-  console.log(unCalculatedVal);
-  for(value in arr){
-    equation += arr[value].innerText
+  equation = Array.from(screenFrame.children);
+  for (value in equation) {
+    finalAnswer += equation[value].innerText;
   }
-  console.log(equation)
-  console.log(eval(equation))
+  if (finalAnswer != []) finalAnswer = eval(finalAnswer);;
+  displayResult();
 }
+
+function displayResult(){
+  while (screenFrame.firstChild) {
+    screenFrame.firstChild.remove();
+  }
+  const displayedResult = document.createElement('p');
+  displayedResult.textContent = finalAnswer;
+  
+  screenFrame.appendChild(displayedResult);
+}
+
 
 //numerical input
 function numberBtnInput() {
@@ -94,16 +104,14 @@ function operatorBtnInput() {
       valuesAssigning("valMinus", "-", "oper-minus");
       break;
     case "multiply":
-      valuesAssigning("valMultiply", "X", "oper-multiply");
+      valuesAssigning("valMultiply", "*", "oper-multiply");
       break;
     case "divide":
       valuesAssigning("valDivide", "/", "oper-divide");
       break;
     case "clear":
-      while (screenFrame.firstChild) {
-        screenFrame.firstChild.remove();
-      }
-    
+      clearDisplay();
+      resetValue();
       break;
     case "enter":
       result();
@@ -118,6 +126,14 @@ function valuesAssigning(valueName, value, valueClass) {
   valueName.classList.add(valueClass);
   screenFrame.appendChild(valueName);
 }
+
+//display Cleaner 
+function clearDisplay(){
+  while (screenFrame.firstChild) {
+    screenFrame.firstChild.remove();
+  }
+}
+resetValue = () => finalAnswer = Array.from(finalAnswer)
 
 // made it so it removes the initial value of zero Once only
 const initialText = (function () {
